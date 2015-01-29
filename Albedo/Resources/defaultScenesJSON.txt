@@ -1,0 +1,53 @@
+{
+	"energize": {
+		"state": {
+			"1": {
+				"bri": 254,
+				"ct": 155
+			}
+		},
+		"name": "Energize",
+		"tilecolor": -1
+	},
+	"concentrate": {
+		"state": {
+			"1": {
+				"bri": 254,
+				"ct": 231
+			}
+		},
+		"name": "Concentrate",
+		"tilecolor": -2
+	},
+	"reading": {
+		"state": {
+			"1": {
+				"bri": 240,
+				"ct": 343
+			}
+		},
+		"name": "Reading",
+		"tilecolor": -3
+	},
+	"relax_": {
+		"state": {
+			"1": {
+				"bri": 144,
+				"ct": 467
+			}
+		},
+		"name": "Relax",
+		"tilecolor": -4
+	},
+	"nighttime": {
+		"state": {
+			"1": {
+				"bri": 64,
+				"hue": 40000,
+				"sat": 128
+			}
+		},
+		"name": "Nighttime",
+		"tilecolor": -5
+	}
+}

@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.31101.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Albedo", "Albedo\Albedo.csproj", "{19688541-58ED-439D-864C-0657935FB1B2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlbedoTest", "AlbedoTest\AlbedoTest.csproj", "{0ED1978F-D658-4F94-BB2B-450B1C28F591}"
+EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "AlbedoSetup", "AlbedoSetup\AlbedoSetup.vdproj", "{53CA7871-0732-4EE0-97BD-523EA67D71F3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{19688541-58ED-439D-864C-0657935FB1B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19688541-58ED-439D-864C-0657935FB1B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19688541-58ED-439D-864C-0657935FB1B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19688541-58ED-439D-864C-0657935FB1B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ED1978F-D658-4F94-BB2B-450B1C28F591}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ED1978F-D658-4F94-BB2B-450B1C28F591}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ED1978F-D658-4F94-BB2B-450B1C28F591}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ED1978F-D658-4F94-BB2B-450B1C28F591}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53CA7871-0732-4EE0-97BD-523EA67D71F3}.Debug|Any CPU.ActiveCfg = Debug
+		{53CA7871-0732-4EE0-97BD-523EA67D71F3}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,10 @@
+Version 1.1:
+	*Source code now available on GitHub.
+	*All eight scene tiles are now editable.
+	*Scenes/effects can now be automatically enabled on startup.
+	*Added another default scene: Nighttime.
+	*Added a new sunrise setting: Startup. Day begins when you launch Albedo for the first time in 20 hours.
+	*Various bug fixes.
+
+Version 1.0:
+	*Initial release.

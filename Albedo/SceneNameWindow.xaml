@@ -1,0 +1,28 @@
+﻿<Window x:Class="Albedo.SceneNameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Scene Properties" Height="242" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ShowInTaskbar="False">
+	<Grid Margin="0,0,10,0">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="82"/>
+			<RowDefinition Height="1*"/>
+		</Grid.RowDefinitions>
+		<TextBlock HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="Scene name" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="16"/>
+		<TextBox Name="NameText" HorizontalAlignment="Left" Height="23" Margin="10,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" MaxLength="32"/>
+
+		<TextBlock HorizontalAlignment="Left" Margin="10,69,0,0" TextWrapping="Wrap" Text="Tile colour" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="16" Grid.RowSpan="2"/>
+
+		<Controls:Tile Name="Tile0" Height="48" Width="48" BorderThickness="1" Click="Tile_Click" Margin="10,10,0,0" Grid.Row="1" HorizontalAlignment="Left" VerticalAlignment="Top" />
+		<Controls:Tile Name="Tile1" Height="48" Width="48" Margin="63,10,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" Grid.Row="1" />
+		<Controls:Tile Name="Tile2" Grid.Row="1" Height="48" Width="48" Margin="116,10,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Controls:Tile Name="Tile3" Grid.Row="1" Height="48" Width="48" Margin="169,10,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Controls:Tile Name="Tile4" Grid.Row="1" Height="48" Width="48" Margin="222,10,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Controls:Tile Name="Tile5" Grid.Row="1" Height="48" Width="48" Margin="10,63,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Controls:Tile Name="Tile6" Grid.Row="1" Height="48" Width="48" Margin="63,63,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Controls:Tile Name="Tile7" Grid.Row="1" Height="48" Width="48" Margin="116,63,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Controls:Tile Name="Tile8" Grid.Row="1" Height="48" Width="48" Margin="169,63,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Controls:Tile Name="Tile9" Grid.Row="1" Height="48" Width="48" Margin="222,63,0,0" BorderThickness="1" Click="Tile_Click" VerticalAlignment="Top" HorizontalAlignment="Left" />
+		<Button Content="Cancel" FontSize="12" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="275,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="49" Height="101" Click="Cancel_Click" Style="{x:Null}"/>
+	</Grid>
+</Window>

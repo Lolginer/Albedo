@@ -1,0 +1,69 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Albedo.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="bridgeIP" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0.0.0.0</Value>
+    </Setting>
+    <Setting Name="bridgeUserName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dummy</Value>
+    </Setting>
+    <Setting Name="bridgeGroup" Type="System.String" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="lastActiveTab" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="customSceneJSON" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{}</Value>
+    </Setting>
+    <Setting Name="customSelected5" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="customSelected6" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="customSelected7" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="customSelected8" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="backupMainJSON" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"lights":{"1":{"state": {"on":false,"bri":1,"ct":234,"colormode":"ct"}, "name": "Loading..."}},"groups":{}}</Value>
+    </Setting>
+    <Setting Name="backupGroupJSON" Type="System.String" Scope="User">
+      <Value Profile="(Default)">{"name":"Loading...","lights":["1"]}</Value>
+    </Setting>
+    <Setting Name="newVersion" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="daylightSetting" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="ambientTransition" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">40</Value>
+    </Setting>
+    <Setting Name="customSelected1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">energize</Value>
+    </Setting>
+    <Setting Name="customSelected2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">concentrate</Value>
+    </Setting>
+    <Setting Name="customSelected3" Type="System.String" Scope="User">
+      <Value Profile="(Default)">reading</Value>
+    </Setting>
+    <Setting Name="customSelected4" Type="System.String" Scope="User">
+      <Value Profile="(Default)">relax_</Value>
+    </Setting>
+    <Setting Name="autoEffect" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="autoName" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="startupTime" Type="System.Double" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

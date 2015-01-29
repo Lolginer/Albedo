@@ -1,0 +1,19 @@
+{
+"energize": {		"state": {
+			"one": {
+				"bri": 254,
+				"ct": 155
+			}
+		},
+		"name": "Energize",
+		"tilecolor": -1
+	},
+	"concentrate": {
+		"state": {
+			"one": {
+				"bri": 254,
+				"ct": 231
+			}
+		}
+	}
+}

@@ -1,0 +1,18 @@
+﻿<Window x:Class="Albedo.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Albedo" Height="260" Width="400" WindowStartupLocation="CenterScreen" Topmost="True" ResizeMode="NoResize" Icon="Resources/albedo_icon.ico">
+	<Grid>
+		<TextBlock HorizontalAlignment="Left" Height="61" Margin="15,0,0,0" TextWrapping="Wrap" Text="about Albedo" VerticalAlignment="Top" Width="361" FontSize="48" FontFamily="Segoe UI Light"/>
+		<TextBlock HorizontalAlignment="Left" Height="148" Margin="10,66,0,0" VerticalAlignment="Top" Width="372" TextWrapping="Wrap">
+			<Run Name="VersionText" Text="Version"/>
+			<Run Text=" | "/>
+			<Hyperlink NavigateUri="http://loginer.net/albedo" RequestNavigate="Hyperlink_RequestNavigate">Website</Hyperlink>
+			<Run Text="&#xA;&#xA;This application is provided without any support or warranty."/>
+			<Run Text="For bug reports or feature requests, send an e-mail to"/>
+			<Hyperlink NavigateUri="mailto:loginer@loginer.net" RequestNavigate="Hyperlink_RequestNavigate">loginer@loginer.net</Hyperlink>
+			<Run Text=".&#xA;&#xA;Licensed under GNU General Public License, version 2. Terms and third-party licenses are located in the application directory."/>
+		</TextBlock>
+		<Button Content="OK" HorizontalAlignment="Right" Margin="0,0,10,10" VerticalAlignment="Bottom" Width="75" Height="25" Style="{x:Null}" Click="Button_Click"/>
+	</Grid>
+</Window>

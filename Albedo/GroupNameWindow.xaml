@@ -1,0 +1,12 @@
+﻿<Window x:Class="Albedo.GroupNameWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        Title="Group Properties" Height="140" Width="350" ResizeMode="NoResize" WindowStartupLocation="CenterOwner" WindowStyle="ToolWindow" ShowInTaskbar="False">
+	<Grid Margin="0,0,10,0">
+		<TextBlock HorizontalAlignment="Left" Margin="10,5,0,0" TextWrapping="Wrap" Text="Group name" VerticalAlignment="Top" FontFamily="Segoe UI Semibold" FontSize="16"/>
+		<TextBox Name="NameText" HorizontalAlignment="Left" Height="23" Margin="10,28,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="314" MaxLength="32"/>
+		<Button Content="OK" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="169,67,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="OK_Click" Style="{x:Null}"/>
+		<Button Content="Cancel" FontFamily="Segoe UI" HorizontalAlignment="Left" Margin="249,67,0,0" VerticalAlignment="Top" Width="75" Height="25" Click="Cancel_Click" Style="{x:Null}"/>
+	</Grid>
+</Window>

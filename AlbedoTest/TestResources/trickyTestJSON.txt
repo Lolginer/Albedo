@@ -1,0 +1,453 @@
+﻿{"name":"Light,set 0","lights":["3"], "things"
+:{},
+"lights2": {
+        "1": {
+            "state": {
+                "on": true,
+                "bri": 65,
+                "hue": 33849,
+                "sat": 44,
+                "xy": [
+                    0.3693,
+                    0.3695
+                ],
+                "ct": 234,
+                "alert": "none",
+                "effect": "none",
+                "colormode": "hs",
+                "reach,able": true
+            },
+            "type": "Extended color light",
+            "name": "Bed",
+            "modelid": "LCT001",
+            "uniqueid": "00:00:88:01:00:00:00:11-0b",
+            "swversion": "66009663",
+            "pointsymbol": {
+                "1": "none",
+                "2": "none",
+                "3": "none",
+                "4": "none",
+                "5": "none",
+                "6": "none",
+                "7": "none",
+                "8": "none"
+            }
+        },
+        "2": {
+            "state": {
+                "on": true,
+                "bri": 65,
+                "hue": 17570,
+                "sat": 231,
+                "xy": [
+                    0.4823,
+                    0.4493
+                ],
+                "ct": 406,
+                "alert": "none",
+                "effect": "none",
+                "colormode": "hs",
+                "reachable": true
+            },
+            "type": "Extended color light",
+            "name": "Ambient",
+            "modelid": "LCT001",
+            "uniqueid": "no",
+            "swversion": "66009663",
+            "pointsymbol": {
+                "1": "none",
+                "2": "none",
+                "3": "none",
+                "4": "none",
+                "5": "none",
+                "6": "none",
+                "7": "none",
+                "8": "none"
+            }
+        },
+        "3": {
+            "state": {
+                "on": true,
+                "bri": 254,
+                "hue": 33849,
+                "sat": 44,
+                "xy": [
+                    0.3693,
+                    0.3695
+                ],
+                "ct": 234,
+                "alert": "none",
+                "effect": "none",
+                "colormode": "hs",
+                "reachable": true
+            },
+            "type": "Extended color light",
+            "name": "Desktop",
+            "modelid": "LCT001",
+            "uniqueid": "nah",
+            "swversion": "66009663",
+            "pointsymbol": {
+                "1": "none",
+                "2": "none",
+                "3": "none",
+                "4": "none",
+                "5": "none",
+                "6": "none",
+                "7": "none",
+                "8": "none"
+            }
+        }
+    },
+    "groups": {
+        "1": {
+            "name": "Test Group 1",
+            "lights": [
+                "1",
+                "2"
+            ],
+            "type": "LightGroup",
+            "action": {
+                "on": true,
+                "bri": 65,
+                "hue": 17570,
+                "sat": 231,
+                "xy": [
+                    0.4823,
+                    0.4493
+                ],
+                "ct": 406,
+                "effect": "none",
+                "colormode": "xy"
+            }
+        },
+        "3": {
+            "name": "Test Group 3",
+            "lights": [
+                "3"
+            ],
+            "type": "LightGroup",
+            "action": {
+                "on": true,
+                "bri": 254,
+                "hue": 33849,
+                "sat": 44,
+                "xy": [
+                    0.3693,
+                    0.3695
+                ],
+                "ct": 234,
+                "effect": "none",
+                "colormode": "xy"
+            }
+        }
+    },
+    "config": {
+        "name": "Philips hue",
+        "zigbeechannel": 15,
+        "mac": "00:17:00:15:00:00",
+        "dhcp": true,
+        "ipaddress": "192.168.0.18",
+        "netmask": "255.255.255.0",
+        "gateway": "192.168.0.1",
+        "proxyaddress": "none",
+        "proxyport": 0,
+        "UTC": "2014-12-08T06:44:17",
+        "localtime": "2014-12-08T07:44:17",
+        "timezone": "Europe/Amsterdam",
+        "whitelist": {
+            "dd": {
+                "last use date": "2014-11-01T06:52:48",
+                "create date": "2014-09-30T10:49:33",
+                "name": "Hue#Samsung Galaxy Nexu"
+            },
+            "ss": {
+                "last use date": "2014-10-12T20:14:23",
+                "create date": "2014-09-30T14:52:10",
+                "name": "Hue#Asus Nexus 7"
+            },
+            "xx": {
+                "last use date": "2014-10-01T01:02:43",
+                "create date": "2014-10-01T00:56:27",
+                "name": "Samsung Galaxy Nexus"
+            },
+            "cc": {
+                "last use date": "2014-10-01T01:33:32",
+                "create date": "2014-10-01T01:30:23",
+                "name": "PC"
+            },
+            "bb": {
+                "last use date": "2014-10-01T01:59:50",
+                "create date": "2014-10-01T01:57:09",
+                "name": "MyApplication#QuickStartApp"
+            },
+            "aas": {
+                "last use date": "2014-10-01T02:11:07",
+                "create date": "2014-10-01T02:02:37",
+                "name": "Samsung Galaxy Nexus"
+            },
+            "aa": {
+                "last use date": "2014-12-08T06:44:17",
+                "create date": "2014-10-01T03:10:34",
+                "name": "test user"
+            }
+        },
+        "swversion": "01016441",
+        "apiversion": "1.4.0",
+        "swupdate": {
+            "updatestate": 2,
+            "checkforupdate": false,
+            "devicetypes": {
+                "bridge": false,
+                "lights": [
+                    "1",
+                    "2",
+                    "3"
+                ]
+            },
+            "url": "",
+            "text": "HUE0100 lamp 66013452 ",
+            "notify": false
+        },
+        "linkbutton": false,
+        "portalservices": true,
+        "portalconnection": "connected",
+        "portalstate": {
+            "signedon": true,
+            "incoming": true,
+            "outgoing": true,
+            "communication": "disconnected"
+        }
+    },
+    "schedules": {},
+    "scenes": {
+        "087f88f52-on-0": {
+            "name": "Sunset on 141207",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "966870a5e-on-0": {
+            "name": "Neutral on 14120",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "f2b600f90-on-0": {
+            "name": "Kathy on 1412075",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "2141cb8bd-on-0": {
+            "name": "Deep sea on 1412",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "2e1dbbb4a-on-0": {
+            "name": "Pencils on 14120",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "411c1b0e6-on-0": {
+            "name": "Ski on 141208876",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "6b6ca6a0d-on-0": {
+            "name": "Beach on 1412088",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "33300ac17-on-0": {
+            "name": "Feet up on 14120",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "fd499c3e2-on-0": {
+            "name": "Taj on 141208879",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "e915785b2-on-0": {
+            "name": "Reading on 14120",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "84fa88aa5-on-0": {
+            "name": "Energize on 1412",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "ac637e2f0-on-0": {
+            "name": "Relax on 1412088",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "f5d73dbdd-on-0": {
+            "name": "Concentrate on 1",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "797106fb9-on-0": {
+            "name": "Hammock on 14120",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "8bfa5715e-on-0": {
+            "name": "Laila on 1412088",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "0f2c67d80-on-0": {
+            "name": "Blue rain on 141",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "02b12e930-off-0": {
+            "name": "Energize off 141",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "cf325cfc9-on-0": {
+            "name": "Energize on 1412",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "25b485af0-on-0": {
+            "name": "Jump! on 1412089",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "e07a35d7e-on-0": {
+            "name": "Greece on 141208",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "26f67fc57-on-0": {
+            "name": "Reading on 14120",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "2140a2bbe-on-0": {
+            "name": "Night Light on 1",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        },
+        "cc37cf855-on-0": {
+            "name": "Ambient Warmth o",
+            "lights": [
+                "1",
+                "2",
+                "3"
+            ],
+            "active": true
+        }
+    },
+    "rules": {},
+    "sensors": {
+        "1": {
+            "state": {
+                "daylight": false,
+                "lastupdated": "none"
+            },
+            "config": {
+                "on": true,
+                "long": "none",
+                "lat": "none",
+                "sunriseoffset": 30,
+                "sunsetoffset": -30
+            },
+            "name": "Daylight",
+            "type": "Daylight",
+            "modelid": "PHDL00",
+            "manufacturername": "Philips",
+            "swversion": "1.0"
+        }
+    }
+}
+
