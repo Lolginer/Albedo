@@ -7,7 +7,7 @@ using System.Windows.Media;
 using System.Drawing;
 using System.Dynamic;
 using Albedo.Core;
-using SharpDX;
+//using SharpDX;
 
 namespace Albedo
 {
