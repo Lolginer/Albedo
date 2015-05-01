@@ -100,7 +100,11 @@ namespace Albedo
 			if (SetupTabs.SelectedIndex == 3) {
 				Search(false);
 				ComboItem bridge = (ComboItem)BridgeCombo.SelectedItem;
-				bridgeIP = bridge.idStore;
+				if (BridgeCombo.SelectedIndex != -1) {
+					bridgeIP = bridge.idStore;
+				} else {
+					bridgeIP = ManualIP.Text;
+				}
 				Pair(true);
 			} else if (SetupTabs.SelectedIndex < 3) {
 				Pair(false);
@@ -251,6 +255,17 @@ namespace Albedo
 					showingBalloon = false;
 				}
 			}));
+		}
+
+		private void ManualIP_TextChanged_1(object sender, TextChangedEventArgs e)
+		{
+			if (ManualIP.Text != "") {
+				BridgeNext.IsEnabled = true;
+			} else if (BridgeCombo.SelectedIndex != -1) {
+				BridgeNext.IsEnabled = true;
+			} else {
+				BridgeNext.IsEnabled = false;
+			}
 		}
 	}
 }

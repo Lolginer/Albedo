@@ -22,8 +22,9 @@
 					<Button Content="Previous" HorizontalAlignment="Left" Margin="255,297,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="22" FontFamily="Segoe UI Semilight" Click="Previous_Click"/>
 					<Button Content="Next" Name="BridgeNext"  HorizontalAlignment="Left" Margin="460,297,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="22" FontFamily="Segoe UI Semilight" Click="Next_Click" IsEnabled="False"/>
 					<TextBlock HorizontalAlignment="Left" Margin="10,144,0,0" TextWrapping="Wrap" Text=
-						"Albedo is now searching for hue bridges on your network.&#x0a;&#x0a;If the dropdown remains empty after a few seconds, make sure your bridge is plugged in and connected to the router."
+						"Albedo is now searching for hue bridges on your network.&#x0a;&#x0a;If the dropdown remains empty after a few seconds, make sure your bridge is plugged in and connected to the router. Alternatively, if you know your bridge's IP address, you can enter it manually below."
 						VerticalAlignment="Top" Height="148" Width="650" FontSize="16" FontFamily="Segoe UI Semilight"/>
+					<TextBox Name="ManualIP" HorizontalAlignment="Left" Height="23" Margin="10,269,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="ManualIP_TextChanged_1"/>
 				</Grid>
 			</TabItem>
 			<TabItem Header="" IsEnabled="False">
