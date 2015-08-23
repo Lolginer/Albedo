@@ -87,6 +87,10 @@ namespace Albedo.Core
 		{
 			dynamic ambient = Platform.AmbientSampling();
 			bufferData.bri = ambient.bri;
+			if (Platform.ReadSetting("ambientColorOnly") > 0) {
+				bufferData.bri = Platform.ReadSetting("ambientColorOnly");
+			}
+
 			bufferData.hue = ambient.hue;
 			bufferData.sat = ambient.sat;
 			return;

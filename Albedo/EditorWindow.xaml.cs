@@ -1,6 +1,11 @@
-﻿using System;
+﻿using Albedo.Core;
+using System;
 using System.Collections.Generic;
+using System.Dynamic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,11 +16,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Dynamic;
-using System.Net;
-using System.Net.Http;
-using System.Net.Sockets;
-using Albedo.Core;
 
 namespace Albedo
 {
@@ -24,23 +24,15 @@ namespace Albedo
 	/// </summary>
 	public partial class EditorWindow : Window
 	{
-		private class ComboItem
-		{
-			public string nameStore;
-			public string idStore;
-			public int idStore2;
-			public ComboItem(string name, string id, int id2 = 0)
-			{
-				idStore = id;
-				idStore2 = id2;
-				nameStore = name;
-			}
+		//Group buttons
+		public static string groupName = "";
 
-			public override string ToString()
-			{
-				return nameStore;
-			}
-		}
+		public static int sceneColor = 0;
+
+		//Scene buttons
+		public static string sceneName = "";
+
+		public bool slidersAllowed = false;
 
 		public EditorWindow()
 		{
@@ -49,8 +41,6 @@ namespace Albedo
 			this.Activate();
 			this.Focus();
 		}
-
-		public bool slidersAllowed = false; //Prevents SetInfo from changing the actual light states
 
 		public void InitSceneInfo() //This should probably be a lot shorter. Break down into smaller/reusable bits.
 		{
@@ -68,7 +58,6 @@ namespace Albedo
 					Slider sliderRef = (Slider)this.FindName(briSliderName);
 					Slider sliderRef2 = (Slider)this.FindName(hueSliderName);
 					Slider sliderRef3 = (Slider)this.FindName(satSliderName);
-
 
 					LightProperty.SetLightSource(nameRef, lightLabel);
 					LightProperty.SetLightSource(sliderRef, lightLabel);
@@ -94,7 +83,7 @@ namespace Albedo
 			//Set current scene
 			this.SceneCombo.Items.Add(new ComboItem("New scene", ""));
 			this.SceneCombo.SelectedIndex = 0;
-			
+
 			i = 1;
 			foreach (dynamic scene in Storage.sceneData) {
 				this.SceneCombo.Items.Add(new ComboItem(JsonParser.Read(Storage.sceneData, new string[] { scene.Key, "name" }), scene.Key));
@@ -233,6 +222,7 @@ namespace Albedo
 			slidersAllowed = true;
 		}
 
+		//Prevents SetInfo from changing the actual light states
 		//Called when selecting a scene. Changes slider values.
 		public void NewSceneInfo(string scene, bool init = false)
 		{
@@ -270,6 +260,33 @@ namespace Albedo
 
 			if (!init) {
 				slidersAllowed = true;
+			}
+		}
+
+		private void AppCombo1_SelectionChanged(object sender, SelectionChangedEventArgs e) //Transition time for Ambient mode
+		{
+			if (slidersAllowed && AppCombo1.SelectedIndex != -1) {
+				if (AppCombo1.SelectedIndex == 0) {
+					Albedo.Properties.Settings.Default.ambientTransition = 80;
+				} else if (AppCombo1.SelectedIndex == 1) {
+					Albedo.Properties.Settings.Default.ambientTransition = 40;
+				} else if (AppCombo1.SelectedIndex == 2) {
+					Albedo.Properties.Settings.Default.ambientTransition = 10;
+				}
+			}
+		}
+
+		private void AppCombo2_SelectionChanged(object sender, SelectionChangedEventArgs e) //Sunrise setting for Daylight mode
+		{
+			if (slidersAllowed && AppCombo2.SelectedIndex != -1) {
+				Albedo.Properties.Settings.Default.daylightSetting = AppCombo2.SelectedIndex;
+			}
+		}
+
+		private void BriSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			if (slidersAllowed) {
+				PutEvents.ChangeBrightness(LightProperty.GetLightSource(((Slider)sender)), (int)((Slider)sender).Value);
 			}
 		}
 
@@ -313,47 +330,63 @@ namespace Albedo
 			}
 		}
 
+		private void DefaultCombo_SelectionChanged(object sender, SelectionChangedEventArgs e) //Startup scene / effect
+		{
+			if (slidersAllowed && DefaultCombo.SelectedIndex != -1) {
+				ComboItem temp = (ComboItem)DefaultCombo.SelectedItem;
+				Properties.Settings.Default.autoEffect = temp.idStore2;
+				Properties.Settings.Default.autoName = temp.idStore;
+			}
+		}
+
+		async private void Delete2Button_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBoxResult deleteMessage = System.Windows.MessageBox.Show("Are you sure you want to delete this group?", "Group Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			ComboItem temp = (ComboItem)GroupCombo.SelectedItem;
+
+			if (deleteMessage == MessageBoxResult.Yes) {
+				HttpClient client = new HttpClient();
+				string address = AddressBuild.GroupUriSpecify(temp.idStore);
+				Task<HttpResponseMessage> postData = client.DeleteAsync(address);
+				HttpResponseMessage response = await postData;
+
+				string responseString = await response.Content.ReadAsStringAsync();
+				if (responseString.Contains("success")) { //Extremely ugly hack. Use JsonParser after refactoring.
+					JsonParser.Delete(Storage.latestData, new string[] { "groups", temp.idStore });
+					int tempIndex = this.GroupCombo.SelectedIndex;
+					this.GroupCombo.SelectedIndex = 0;
+					this.GroupCombo.Items.RemoveAt(tempIndex);
+				}
+			}
+		}
+
+		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		{
+			MessageBoxResult deleteMessage = System.Windows.MessageBox.Show("Are you sure you want to delete this scene?", "Scene Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			ComboItem temp = (ComboItem)SceneCombo.SelectedItem;
+
+			if (deleteMessage == MessageBoxResult.Yes) {
+				JsonParser.Delete(Storage.sceneData, new string[] { temp.idStore });
+				int tempIndex = this.SceneCombo.SelectedIndex;
+				this.SceneCombo.SelectedIndex = 0;
+				this.SceneCombo.Items.RemoveAt(tempIndex);
+
+				//Delete scene from MainWindow
+				for (int i = 1; i <= 8; i++) {
+					string setting = String.Format("customSelected{0}", i.ToString());
+					if ((string)Properties.Settings.Default[setting] == temp.idStore) {
+						Properties.Settings.Default[setting] = "";
+					}
+				}
+			}
+		}
+
 		private void EditorWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
 		{
 			Properties.Settings.Default.customSceneJSON = JsonParser.Serialize(Storage.sceneData);
 			Properties.Settings.Default.Save();
 			Storage.InitializeData();
 			WindowStorage.editorStorage = null;
-		}
-
-		private void BriSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-		{
-			if (slidersAllowed) {
-				PutEvents.ChangeBrightness(LightProperty.GetLightSource(((Slider)sender)), (int)((Slider)sender).Value);
-			}
-		}
-
-		private void HueSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-		{
-			if (slidersAllowed) {
-				PutEvents.ChangeHue(LightProperty.GetLightSource(((Slider)sender)), (int)((Slider)sender).Value);
-			}
-		}
-
-		private void SatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
-		{
-			if (slidersAllowed) {
-				PutEvents.ChangeSaturation(LightProperty.GetLightSource(((Slider)sender)), (int)((Slider)sender).Value);
-			}
-		}
-
-		private void SceneCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			ComboItem temp = (ComboItem)SceneCombo.SelectedItem;
-			if (temp != null) {
-				if (slidersAllowed && temp.idStore != "") {
-					PutEvents.ChangeScene(temp.idStore, false);
-					NewSceneInfo(temp.idStore);
-				}
-				ButtonUpdate(temp.idStore);
-			} else {
-				this.SceneCombo.SelectedIndex = 0;
-			}
 		}
 
 		private void GroupCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -363,7 +396,7 @@ namespace Albedo
 				if (slidersAllowed && temp.idStore != "") {
 					Properties.Settings.Default.bridgeGroup = temp.idStore;
 					Storage.ReinitializeData();
-					
+
 					//Change dropdown selections
 					for (int n = 1; n <= 5; n++) {
 						string comboName = String.Format("GroupLight{0}", n);
@@ -402,43 +435,11 @@ namespace Albedo
 			}
 		}
 
-		private dynamic SceneCreation(string name, int color)
-		{
-			dynamic newScene = new ExpandoObject();
-			newScene.state = new ExpandoObject();
-			var state = (IDictionary<string, object>)newScene.state;
-			newScene.name = name;
-			newScene.tilecolor = color;
-
-			int i = 1;
-			foreach (string lightLabel in Storage.groupData.lights) {
-				if (i <= 5) {
-					state[i.ToString()] = new ExpandoObject();
-					var lightstate = (IDictionary<string, object>)state[i.ToString()];
-
-					string briSliderName = String.Format("BriSlider{0}", i);
-					string hueSliderName = String.Format("HueSlider{0}", i);
-					string satSliderName = String.Format("SatSlider{0}", i);
-					Slider sliderRef = (Slider)this.FindName(briSliderName);
-					Slider sliderRef2 = (Slider)this.FindName(hueSliderName);
-					Slider sliderRef3 = (Slider)this.FindName(satSliderName);
-
-					lightstate["bri"] = (int)sliderRef.Value;
-					lightstate["hue"] = (int)sliderRef2.Value;
-					lightstate["sat"] = (int)sliderRef3.Value;
-
-					i++;
-				}
-			}
-
-			return newScene;
-		}
-
 		private dynamic GroupCreation(string name)
 		{
 			dynamic newGroup = new ExpandoObject();
 			newGroup.name = name;
-			
+
 			List<string> lights = new List<string>();
 
 			int i = 0;
@@ -461,63 +462,49 @@ namespace Albedo
 			return newGroup;
 		}
 
-
-		//Scene buttons
-		public static string sceneName = "";
-		public static int sceneColor = 0;
-
-		private void SaveButton_Click(object sender, RoutedEventArgs e)
+		private void HueSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
 		{
-			sceneName = "";
-			sceneColor = 0;
-			SceneNameWindow nameWindow = new SceneNameWindow();
-			nameWindow.Owner = this;
-			nameWindow.ShowDialog();
-
-			if (sceneName != "") {
-				Random randomID = new Random();
-				string sceneID = String.Format("scene_{0}", randomID.Next(10000000, 99999999).ToString());
-				if (JsonParser.Read(Storage.sceneData, new string[] { sceneID, sceneName }) == null) {
-					dynamic newScene = SceneCreation(sceneName, sceneColor);
-
-					JsonParser.Create(Storage.sceneData, new string[] { sceneID }, newScene);
-
-					//Add new scene to MainWindow
-					for (int i = 1; i <= 8; i++) {
-						string setting = String.Format("customSelected{0}", i.ToString());
-						if ((string)Properties.Settings.Default[setting] == "") {
-							Properties.Settings.Default[setting] = sceneID;
-							break;
-						}
-					}
-
-					//Append list of scenes
-					this.SceneCombo.Items.Add(new ComboItem(JsonParser.Read(Storage.sceneData, new string[] { sceneID, "name" }), sceneID));
-					this.SceneCombo.SelectedIndex = this.SceneCombo.Items.Count - 1;
-
-				} else {
-					MessageBox.Show("ID already in use. (This error should not occur. Try saving the scene again.)");
-				}
+			if (slidersAllowed) {
+				PutEvents.ChangeHue(LightProperty.GetLightSource(((Slider)sender)), (int)((Slider)sender).Value);
 			}
 		}
 
-		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		async private void Name2Button_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBoxResult deleteMessage = System.Windows.MessageBox.Show("Are you sure you want to delete this scene?", "Scene Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-			ComboItem temp = (ComboItem)SceneCombo.SelectedItem;
+			ComboItem temp = (ComboItem)GroupCombo.SelectedItem;
+			groupName = "";
+			GroupNameWindow nameWindow = new GroupNameWindow();
+			nameWindow.Owner = this;
+			nameWindow.ShowDialog();
 
-			if (deleteMessage == MessageBoxResult.Yes) {
-				JsonParser.Delete(Storage.sceneData, new string[] { temp.idStore });
-				int tempIndex = this.SceneCombo.SelectedIndex;
-				this.SceneCombo.SelectedIndex = 0;
-				this.SceneCombo.Items.RemoveAt(tempIndex);
-				
-				//Delete scene from MainWindow
-				for (int i = 1; i <= 8; i++) {
-					string setting = String.Format("customSelected{0}", i.ToString());
-					if ((string)Properties.Settings.Default[setting] == temp.idStore) {
-						Properties.Settings.Default[setting] = "";
+			if (groupName != "") {
+				foreach (dynamic group in Storage.latestData.groups) {
+					if (group.Value.name == groupName) {
+						if (temp.nameStore != groupName) {
+							MessageBox.Show("Group name already in use.", "Name Error", MessageBoxButton.OK, MessageBoxImage.Error);
+						}
+						return;
 					}
+				}
+
+				dynamic groupData = new ExpandoObject();
+				groupData.name = groupName;
+
+				HttpClient client = new HttpClient();
+				string address = AddressBuild.GroupUriSpecify(temp.idStore);
+				StringContent content = new StringContent(JsonParser.Serialize(groupData));
+				Task<HttpResponseMessage> postData = client.PutAsync(address, content);
+				HttpResponseMessage response = await postData;
+
+				string responseString = await response.Content.ReadAsStringAsync();
+				if (responseString.Contains("success")) { //Extremely ugly hack. Use JsonParser after refactoring.
+					//Edit group in latestData
+					JsonParser.Modify(Storage.latestData, new string[] { "groups", temp.idStore, "name" }, groupName);
+
+					//Edit list entry
+					int tempIndex = this.GroupCombo.SelectedIndex;
+					this.GroupCombo.Items[tempIndex] = new ComboItem(groupName, temp.idStore);
+					this.GroupCombo.SelectedIndex = tempIndex;
 				}
 			}
 		}
@@ -541,24 +528,26 @@ namespace Albedo
 			}
 		}
 
-		private void WriteButton_Click(object sender, RoutedEventArgs e)
+		//App settings
+		private void ResetButton_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBoxResult writeMessage = System.Windows.MessageBox.Show("Are you sure you want to overwrite this scene?", "Scene Editing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+			MessageBoxResult writeMessage = System.Windows.MessageBox.Show(
+				"This will erase the bridge settings, and close Albedo. The next time it's launched, the setup wizard will open. Other settings like custom scenes will remain. Are you sure you want to proceed?",
+				"Reset Bridge Settings", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
 			if (writeMessage == MessageBoxResult.Yes) {
-				ComboItem tempItem = (ComboItem)SceneCombo.SelectedItem;
-				string writeName = JsonParser.Read(Storage.sceneData, new string[] { tempItem.idStore, "name" });
-				int writeColor = JsonParser.Read(Storage.sceneData, new string[] { tempItem.idStore, "tilecolor" });
-				string sceneID = tempItem.idStore;
-
-				dynamic newScene = SceneCreation(writeName, writeColor);
-				JsonParser.Modify(Storage.sceneData, new string[] { sceneID }, newScene);
+				Properties.Settings.Default.bridgeIP = "0.0.0.0";
+				Properties.Settings.Default.Save();
+				WindowStorage.dummyStorage.Exit();
 			}
 		}
 
-
-		//Group buttons
-		public static string groupName = "";
+		private void SatSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			if (slidersAllowed) {
+				PutEvents.ChangeSaturation(LightProperty.GetLightSource(((Slider)sender)), (int)((Slider)sender).Value);
+			}
+		}
 
 		async private void Save2Button_Click(object sender, RoutedEventArgs e) //Should be synchronous after refactoring
 		{
@@ -607,65 +596,84 @@ namespace Albedo
 			}
 		}
 
-		async private void Delete2Button_Click(object sender, RoutedEventArgs e)
+		private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
-			MessageBoxResult deleteMessage = System.Windows.MessageBox.Show("Are you sure you want to delete this group?", "Group Deletion", MessageBoxButton.YesNo, MessageBoxImage.Warning);
-			ComboItem temp = (ComboItem)GroupCombo.SelectedItem;
+			sceneName = "";
+			sceneColor = 0;
+			SceneNameWindow nameWindow = new SceneNameWindow();
+			nameWindow.Owner = this;
+			nameWindow.ShowDialog();
 
-			if (deleteMessage == MessageBoxResult.Yes) {
-				HttpClient client = new HttpClient();
-				string address = AddressBuild.GroupUriSpecify(temp.idStore);
-				Task<HttpResponseMessage> postData = client.DeleteAsync(address);
-				HttpResponseMessage response = await postData;
+			if (sceneName != "") {
+				Random randomID = new Random();
+				string sceneID = String.Format("scene_{0}", randomID.Next(10000000, 99999999).ToString());
+				if (JsonParser.Read(Storage.sceneData, new string[] { sceneID, sceneName }) == null) {
+					dynamic newScene = SceneCreation(sceneName, sceneColor);
 
-				string responseString = await response.Content.ReadAsStringAsync();
-				if (responseString.Contains("success")) { //Extremely ugly hack. Use JsonParser after refactoring.
-					JsonParser.Delete(Storage.latestData, new string[] { "groups", temp.idStore });
-					int tempIndex = this.GroupCombo.SelectedIndex;
-					this.GroupCombo.SelectedIndex = 0;
-					this.GroupCombo.Items.RemoveAt(tempIndex);
+					JsonParser.Create(Storage.sceneData, new string[] { sceneID }, newScene);
+
+					//Add new scene to MainWindow
+					for (int i = 1; i <= 8; i++) {
+						string setting = String.Format("customSelected{0}", i.ToString());
+						if ((string)Properties.Settings.Default[setting] == "") {
+							Properties.Settings.Default[setting] = sceneID;
+							break;
+						}
+					}
+
+					//Append list of scenes
+					this.SceneCombo.Items.Add(new ComboItem(JsonParser.Read(Storage.sceneData, new string[] { sceneID, "name" }), sceneID));
+					this.SceneCombo.SelectedIndex = this.SceneCombo.Items.Count - 1;
+				} else {
+					MessageBox.Show("ID already in use. (This error should not occur. Try saving the scene again.)");
 				}
 			}
 		}
 
-		async private void Name2Button_Click(object sender, RoutedEventArgs e)
+		private void SceneCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			ComboItem temp = (ComboItem)GroupCombo.SelectedItem;
-			groupName = "";
-			GroupNameWindow nameWindow = new GroupNameWindow();
-			nameWindow.Owner = this;
-			nameWindow.ShowDialog();
-
-			if (groupName != "") {
-				foreach (dynamic group in Storage.latestData.groups) {
-					if (group.Value.name == groupName) {
-						if (temp.nameStore != groupName) {
-							MessageBox.Show("Group name already in use.", "Name Error", MessageBoxButton.OK, MessageBoxImage.Error);
-						}
-						return;
-					}
+			ComboItem temp = (ComboItem)SceneCombo.SelectedItem;
+			if (temp != null) {
+				if (slidersAllowed && temp.idStore != "") {
+					PutEvents.ChangeScene(temp.idStore, false);
+					NewSceneInfo(temp.idStore);
 				}
+				ButtonUpdate(temp.idStore);
+			} else {
+				this.SceneCombo.SelectedIndex = 0;
+			}
+		}
 
-				dynamic groupData = new ExpandoObject();
-				groupData.name = groupName;
+		private dynamic SceneCreation(string name, int color)
+		{
+			dynamic newScene = new ExpandoObject();
+			newScene.state = new ExpandoObject();
+			var state = (IDictionary<string, object>)newScene.state;
+			newScene.name = name;
+			newScene.tilecolor = color;
 
-				HttpClient client = new HttpClient();
-				string address = AddressBuild.GroupUriSpecify(temp.idStore);
-				StringContent content = new StringContent(JsonParser.Serialize(groupData));
-				Task<HttpResponseMessage> postData = client.PutAsync(address, content);
-				HttpResponseMessage response = await postData;
+			int i = 1;
+			foreach (string lightLabel in Storage.groupData.lights) {
+				if (i <= 5) {
+					state[i.ToString()] = new ExpandoObject();
+					var lightstate = (IDictionary<string, object>)state[i.ToString()];
 
-				string responseString = await response.Content.ReadAsStringAsync();
-				if (responseString.Contains("success")) { //Extremely ugly hack. Use JsonParser after refactoring.
-					//Edit group in latestData
-					JsonParser.Modify(Storage.latestData, new string[] { "groups", temp.idStore, "name" }, groupName);
+					string briSliderName = String.Format("BriSlider{0}", i);
+					string hueSliderName = String.Format("HueSlider{0}", i);
+					string satSliderName = String.Format("SatSlider{0}", i);
+					Slider sliderRef = (Slider)this.FindName(briSliderName);
+					Slider sliderRef2 = (Slider)this.FindName(hueSliderName);
+					Slider sliderRef3 = (Slider)this.FindName(satSliderName);
 
-					//Edit list entry
-					int tempIndex = this.GroupCombo.SelectedIndex;
-					this.GroupCombo.Items[tempIndex] = new ComboItem(groupName, temp.idStore);
-					this.GroupCombo.SelectedIndex = tempIndex;
+					lightstate["bri"] = (int)sliderRef.Value;
+					lightstate["hue"] = (int)sliderRef2.Value;
+					lightstate["sat"] = (int)sliderRef3.Value;
+
+					i++;
 				}
 			}
+
+			return newScene;
 		}
 
 		async private void Write2Button_Click(object sender, RoutedEventArgs e)
@@ -691,37 +699,38 @@ namespace Albedo
 			}
 		}
 
-
-		//App settings
-
-		private void DefaultCombo_SelectionChanged(object sender, SelectionChangedEventArgs e) //Startup scene / effect
+		private void WriteButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (slidersAllowed && DefaultCombo.SelectedIndex != -1) {
-				ComboItem temp = (ComboItem)DefaultCombo.SelectedItem;
-				Properties.Settings.Default.autoEffect = temp.idStore2;
-				Properties.Settings.Default.autoName = temp.idStore;
+			MessageBoxResult writeMessage = System.Windows.MessageBox.Show("Are you sure you want to overwrite this scene?", "Scene Editing", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+			if (writeMessage == MessageBoxResult.Yes) {
+				ComboItem tempItem = (ComboItem)SceneCombo.SelectedItem;
+				string writeName = JsonParser.Read(Storage.sceneData, new string[] { tempItem.idStore, "name" });
+				int writeColor = JsonParser.Read(Storage.sceneData, new string[] { tempItem.idStore, "tilecolor" });
+				string sceneID = tempItem.idStore;
+
+				dynamic newScene = SceneCreation(writeName, writeColor);
+				JsonParser.Modify(Storage.sceneData, new string[] { sceneID }, newScene);
 			}
 		}
 
-		private void AppCombo1_SelectionChanged(object sender, SelectionChangedEventArgs e) //Transition time for Ambient mode
+		private class ComboItem
 		{
-			if (slidersAllowed && AppCombo1.SelectedIndex != -1) {
-				if (AppCombo1.SelectedIndex == 0) {
-					Albedo.Properties.Settings.Default.ambientTransition = 80;
-				} else if (AppCombo1.SelectedIndex == 1) {
-					Albedo.Properties.Settings.Default.ambientTransition = 40;
-				} else if (AppCombo1.SelectedIndex == 2) {
-					Albedo.Properties.Settings.Default.ambientTransition = 10;
-				}
+			public string idStore;
+			public int idStore2;
+			public string nameStore;
+
+			public ComboItem(string name, string id, int id2 = 0)
+			{
+				idStore = id;
+				idStore2 = id2;
+				nameStore = name;
+			}
+
+			public override string ToString()
+			{
+				return nameStore;
 			}
 		}
-
-		private void AppCombo2_SelectionChanged(object sender, SelectionChangedEventArgs e) //Sunrise setting for Daylight mode
-		{
-			if (slidersAllowed && AppCombo2.SelectedIndex != -1) {
-				Albedo.Properties.Settings.Default.daylightSetting = AppCombo2.SelectedIndex;
-			}
-		}
-
 	}
 }

@@ -8,74 +8,74 @@
 			<TabItem Header="scene editor ">
 				<Grid Margin="0,1,0,-1">
 					<Grid.RowDefinitions>
-						<RowDefinition Height="48"/>
-						<RowDefinition Height="1*"/>
+						<RowDefinition Height="48" />
+						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="1*"/>
-						<ColumnDefinition Width="3*"/>
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock HorizontalAlignment="Left" Margin="10,-4,0,0" TextWrapping="Wrap" Text="Selected scene" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="109"/>
-					<ComboBox Name="SceneCombo" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="750" Grid.ColumnSpan="2" SelectionChanged="SceneCombo_SelectionChanged"/>
-					<Button Name="SaveButton" Content="Save as" Margin="10,15,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" Click="SaveButton_Click"/>
-					<Button Name="WriteButton" Content="Overwrite" Margin="10,96,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="WriteButton_Click"/>
-					<Button Name="NameButton" Content="Rename" Margin="10,177,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="NameButton_Click"/>
-					<Button Name="DeleteButton" Content="Delete" Margin="10,258,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="DeleteButton_Click"/>
+					<TextBlock HorizontalAlignment="Left" Margin="10,-4,0,0" TextWrapping="Wrap" Text="Selected scene" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="109" />
+					<ComboBox Name="SceneCombo" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="750" Grid.ColumnSpan="2" SelectionChanged="SceneCombo_SelectionChanged" />
+					<Button Name="SaveButton" Content="Save as" Margin="10,15,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" Click="SaveButton_Click" />
+					<Button Name="WriteButton" Content="Overwrite" Margin="10,96,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="WriteButton_Click" />
+					<Button Name="NameButton" Content="Rename" Margin="10,177,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="NameButton_Click" />
+					<Button Name="DeleteButton" Content="Delete" Margin="10,258,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="DeleteButton_Click" />
 					<Grid Grid.Column="1" Grid.Row="1" Margin="0,0,10,0">
 						<Grid.ColumnDefinitions>
-							<ColumnDefinition Width="143"/>
-							<ColumnDefinition Width="1*"/>
+							<ColumnDefinition Width="143" />
+							<ColumnDefinition Width="1*" />
 						</Grid.ColumnDefinitions>
 
-						<TextBlock Text="BRI" Margin="0,9,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666"/>
-						<TextBlock Text="HUE" Margin="0,25,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666"/>
-						<TextBlock Text="SAT" Margin="0,41,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666"/>
-						<Slider local:LightProperty.LightSource="" x:Name="BriSlider1" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,12,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="HueSlider1" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,28,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="SatSlider1" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,44,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
+						<TextBlock Text="BRI" Margin="0,9,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666" />
+						<TextBlock Text="HUE" Margin="0,25,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666" />
+						<TextBlock Text="SAT" Margin="0,41,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666" />
+						<Slider local:LightProperty.LightSource="" x:Name="BriSlider1" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,12,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="HueSlider1" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,28,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="SatSlider1" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,44,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
 
-						<TextBlock Text="BRI" Margin="0,73,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666"/>
-						<TextBlock Text="HUE" Margin="0,89,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666"/>
-						<TextBlock Text="SAT" Margin="0,105,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666"/>
-						<Slider local:LightProperty.LightSource="" x:Name="BriSlider2" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,76,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="HueSlider2" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,92,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="SatSlider2" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,108,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
+						<TextBlock Text="BRI" Margin="0,73,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666" />
+						<TextBlock Text="HUE" Margin="0,89,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666" />
+						<TextBlock Text="SAT" Margin="0,105,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666" />
+						<Slider local:LightProperty.LightSource="" x:Name="BriSlider2" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,76,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="HueSlider2" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,92,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="SatSlider2" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,108,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
 
-						<TextBlock Text="BRI" Margin="0,137,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666"/>
-						<TextBlock Text="HUE" Margin="0,153,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666"/>
-						<TextBlock Text="SAT" Margin="0,169,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666"/>
-						<Slider local:LightProperty.LightSource="" x:Name="BriSlider3" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,140,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="HueSlider3" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,156,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="SatSlider3" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,172,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
+						<TextBlock Text="BRI" Margin="0,137,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666" />
+						<TextBlock Text="HUE" Margin="0,153,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666" />
+						<TextBlock Text="SAT" Margin="0,169,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666" />
+						<Slider local:LightProperty.LightSource="" x:Name="BriSlider3" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,140,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="HueSlider3" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,156,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="SatSlider3" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,172,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
 
-						<TextBlock Text="BRI" Margin="0,201,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666"/>
-						<TextBlock Text="HUE" Margin="0,217,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666"/>
-						<TextBlock Text="SAT" Margin="0,233,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666"/>
-						<Slider local:LightProperty.LightSource="" x:Name="BriSlider4" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,204,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="HueSlider4" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,220,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="SatSlider4" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,236,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
+						<TextBlock Text="BRI" Margin="0,201,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666" />
+						<TextBlock Text="HUE" Margin="0,217,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666" />
+						<TextBlock Text="SAT" Margin="0,233,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666" />
+						<Slider local:LightProperty.LightSource="" x:Name="BriSlider4" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,204,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="HueSlider4" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,220,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="SatSlider4" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,236,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
 
-						<TextBlock Text="BRI" Margin="0,265,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666"/>
-						<TextBlock Text="HUE" Margin="0,281,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666"/>
-						<TextBlock Text="SAT" Margin="0,297,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666"/>
-						<Slider local:LightProperty.LightSource="" x:Name="BriSlider5" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,268,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="HueSlider5" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,284,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35"/>
-						<Slider local:LightProperty.LightSource="" x:Name="SatSlider5" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,300,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35"/>
+						<TextBlock Text="BRI" Margin="0,265,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="16" Foreground="#F666" />
+						<TextBlock Text="HUE" Margin="0,281,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="21" Foreground="#F666" />
+						<TextBlock Text="SAT" Margin="0,297,5,0" HorizontalAlignment="Right" FontSize="11" FontFamily="Segoe UI" Width="19" Foreground="#F666" />
+						<Slider local:LightProperty.LightSource="" x:Name="BriSlider5" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,268,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" LargeChange="64" SmallChange="32" ValueChanged="BriSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="HueSlider5" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,284,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource HueSlider}" Height="12" Maximum="65534" Minimum="1" Value="1" SmallChange="4096" LargeChange="8192" ValueChanged="HueSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="32" IsEnabled="False" Opacity="0.35" />
+						<Slider local:LightProperty.LightSource="" x:Name="SatSlider5" FocusVisualStyle="{x:Null}" HorizontalAlignment="Left" Margin="3,300,7,0" VerticalAlignment="Top" Width="420" Grid.Column="1" Style="{DynamicResource FlatSlider}" Height="12" Maximum="254" Minimum="1" Value="1" SmallChange="32" LargeChange="64" ValueChanged="SatSlider_ValueChanged" IsSnapToTickEnabled="True" TickFrequency="1" IsEnabled="False" Opacity="0.35" />
 
 						<Viewbox HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" x:Name="SliderName1" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" x:Name="SliderName1" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,64,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" x:Name="SliderName2" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" x:Name="SliderName2" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,128,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" x:Name="SliderName3" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" x:Name="SliderName3" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,192,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" x:Name="SliderName4" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" x:Name="SliderName4" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,256,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" x:Name="SliderName5" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" x:Name="SliderName5" Content="" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 					</Grid>
 				</Grid>
@@ -83,42 +83,42 @@
 			<TabItem Header="groups ">
 				<Grid>
 					<Grid.RowDefinitions>
-						<RowDefinition Height="48"/>
-						<RowDefinition Height="1*"/>
+						<RowDefinition Height="48" />
+						<RowDefinition Height="1*" />
 					</Grid.RowDefinitions>
 					<Grid.ColumnDefinitions>
-						<ColumnDefinition Width="1*"/>
-						<ColumnDefinition Width="3*"/>
+						<ColumnDefinition Width="1*" />
+						<ColumnDefinition Width="3*" />
 					</Grid.ColumnDefinitions>
-					<TextBlock HorizontalAlignment="Left" Margin="10,-4,0,0" TextWrapping="Wrap" Text="Selected group" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="118"/>
-					<ComboBox Name="GroupCombo" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="750" Grid.ColumnSpan="2" SelectionChanged="GroupCombo_SelectionChanged"/>
-					<Button Name="Save2Button" Content="Save as" Margin="10,15,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" Click="Save2Button_Click"/>
-					<Button Name="Write2Button" Content="Overwrite" Margin="10,96,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="Write2Button_Click"/>
-					<Button Name="Name2Button" Content="Rename" Margin="10,177,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="Name2Button_Click"/>
-					<Button Name="Delete2Button" Content="Delete" Margin="10,258,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="Delete2Button_Click"/>
+					<TextBlock HorizontalAlignment="Left" Margin="10,-4,0,0" TextWrapping="Wrap" Text="Selected group" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="118" />
+					<ComboBox Name="GroupCombo" HorizontalAlignment="Left" Margin="10,17,0,0" VerticalAlignment="Top" Width="750" Grid.ColumnSpan="2" SelectionChanged="GroupCombo_SelectionChanged" />
+					<Button Name="Save2Button" Content="Save as" Margin="10,15,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" Click="Save2Button_Click" />
+					<Button Name="Write2Button" Content="Overwrite" Margin="10,96,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="Write2Button_Click" />
+					<Button Name="Name2Button" Content="Rename" Margin="10,177,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="Name2Button_Click" />
+					<Button Name="Delete2Button" Content="Delete" Margin="10,258,10,0" VerticalAlignment="Top" Height="50" FontSize="28" FontFamily="Segoe UI Light" Grid.Row="1" IsEnabled="False" Opacity="0.65" Click="Delete2Button_Click" />
 
 					<Grid Grid.Column="1" Grid.Row="1" Margin="0,0,10,0">
 						<Viewbox HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" Content="Light source 1" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" Content="Light source 1" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,64,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" Content="Light source 2" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" Content="Light source 2" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,128,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" Content="Light source 3" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" Content="Light source 3" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,192,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" Content="Light source 4" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" Content="Light source 4" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 						<Viewbox HorizontalAlignment="Left" Margin="3,256,0,0" VerticalAlignment="Top" Height="35" Width="107">
-							<Label local:LightProperty.LightSource="" Content="Light source 5" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0"/>
+							<Label local:LightProperty.LightSource="" Content="Light source 5" Foreground="#F666" FontFamily="Segoe UI Semibold" Grid.Column="0" />
 						</Viewbox>
 
-						<ComboBox Name="GroupLight1" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="555"/>
-						<ComboBox Name="GroupLight2" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="555"/>
-						<ComboBox Name="GroupLight3" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" Width="555"/>
-						<ComboBox Name="GroupLight4" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="555"/>
-						<ComboBox Name="GroupLight5" HorizontalAlignment="Left" Margin="10,284,0,0" VerticalAlignment="Top" Width="555"/>
+						<ComboBox Name="GroupLight1" HorizontalAlignment="Left" Margin="10,28,0,0" VerticalAlignment="Top" Width="555" />
+						<ComboBox Name="GroupLight2" HorizontalAlignment="Left" Margin="10,92,0,0" VerticalAlignment="Top" Width="555" />
+						<ComboBox Name="GroupLight3" HorizontalAlignment="Left" Margin="10,156,0,0" VerticalAlignment="Top" Width="555" />
+						<ComboBox Name="GroupLight4" HorizontalAlignment="Left" Margin="10,220,0,0" VerticalAlignment="Top" Width="555" />
+						<ComboBox Name="GroupLight5" HorizontalAlignment="Left" Margin="10,284,0,0" VerticalAlignment="Top" Width="555" />
 					</Grid>
 				</Grid>
 			</TabItem>
@@ -126,22 +126,26 @@
 				<Grid>
 					<ScrollViewer HorizontalAlignment="Left" Height="387" VerticalAlignment="Top" Width="770">
 						<Grid>
-							<TextBlock HorizontalAlignment="Left" Margin="10,-4,0,0" TextWrapping="Wrap" Text="General" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401"/>
-							<TextBlock HorizontalAlignment="Left" Margin="10,28,0,0" TextWrapping="Wrap" Text="Startup scene/effect" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401"/>
-							<ComboBox Name="DefaultCombo" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="DefaultCombo_SelectionChanged" SelectedIndex="0"/>
+							<TextBlock HorizontalAlignment="Left" Margin="10,-4,0,0" TextWrapping="Wrap" Text="General" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
+							<TextBlock HorizontalAlignment="Left" Margin="10,28,0,0" TextWrapping="Wrap" Text="Startup scene/effect" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401" />
+							<ComboBox Name="DefaultCombo" HorizontalAlignment="Left" Margin="10,49,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="DefaultCombo_SelectionChanged" SelectedIndex="0" />
 
-							<TextBlock HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Ambient mode" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401"/>
-							<TextBlock HorizontalAlignment="Left" Margin="10,124,0,0" TextWrapping="Wrap" Text="Transition time" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401"/>
+							<TextBlock HorizontalAlignment="Left" Margin="10,92,0,0" TextWrapping="Wrap" Text="Ambient mode" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
+							<TextBlock HorizontalAlignment="Left" Margin="10,124,0,0" TextWrapping="Wrap" Text="Transition time" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401" />
 							<ComboBox Name="AppCombo1" HorizontalAlignment="Left" Margin="10,145,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="AppCombo1_SelectionChanged">
 								<ComboBoxItem>Slow (8 seconds)</ComboBoxItem>
 								<ComboBoxItem>Medium (4 seconds, default)</ComboBoxItem>
 								<ComboBoxItem>Fast (1 second)</ComboBoxItem>
 							</ComboBox>
 
-							<TextBlock HorizontalAlignment="Left" Margin="10,188,0,0" TextWrapping="Wrap" Text="Daylight mode" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401"/>
+							<TextBlock HorizontalAlignment="Left" Margin="10,188,0,0" TextWrapping="Wrap" Text="Daylight mode" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
 
-							<TextBlock HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="Sunrise setting" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401"/>
-							<ComboBox Name="AppCombo2" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="AppCombo2_SelectionChanged"/>
+							<TextBlock HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="Sunrise setting" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401" />
+							<ComboBox Name="AppCombo2" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="AppCombo2_SelectionChanged" />
+
+							<TextBlock HorizontalAlignment="Left" Margin="10,288,0,0" TextWrapping="Wrap" Text="Reset options" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
+							<Button Content="Reset bridge settings" HorizontalAlignment="Left" Margin="10,325,0,0" VerticalAlignment="Top" Width="150" Height="32" Click="ResetButton_Click" />
+							<Label Content="Use this if you've made changes to your network and Albedo is no longer working." HorizontalAlignment="Left" Margin="5,357,0,0" VerticalAlignment="Top" Width="458"/>
 						</Grid>
 					</ScrollViewer>
 				</Grid>

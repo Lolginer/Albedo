@@ -89,6 +89,12 @@ namespace Albedo
 			Environment.Exit(0);
 		}
 
+		public void Exit()
+		{
+			this.TaskIcon.Visibility = System.Windows.Visibility.Collapsed; //Prevents task icon from remaining in tray
+			Environment.Exit(0);
+		}
+
 		private void AmbientItem_Click(object sender, RoutedEventArgs e)
 		{
 			if (Ready()) {
