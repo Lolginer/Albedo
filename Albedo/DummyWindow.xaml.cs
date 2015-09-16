@@ -56,7 +56,8 @@ namespace Albedo
 
 		private bool Ready()
 		{
-			if (Platform.ReadSetting("bridgeIP") == "0.0.0.0") {
+			string username = Platform.ReadSetting("bridgeUserName");
+			if (Platform.ReadSetting("bridgeIP") != "0.0.0.0" && !username.Contains("albedo")) {
 				return false;
 			} else {
 				return true;

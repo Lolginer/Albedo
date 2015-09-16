@@ -79,6 +79,11 @@ namespace Albedo
 			slidersAllowed = false;
 			int i = 1;
 
+			string username = Platform.ReadSetting("bridgeUserName");
+			if (username.Contains("albedo")) {
+				return;
+			}
+
 			//Populate Lights tab
 			foreach (string lightLabel in Storage.groupData.lights) {
 				if (i <= 5) {

@@ -23,7 +23,7 @@ namespace Albedo.Core
 					devicetype = devicetype.Substring(0, 40);
 				}
 				dynContent.devicetype = devicetype;
-				dynContent.username = bridgeUser;
+				//dynContent.username = bridgeUser; //OBSOLETE. Username is now assigned by the bridge.
 				StringContent content = new StringContent(JsonParser.Serialize(dynContent));
 
 				Task<HttpResponseMessage> postData = client.PostAsync(address, content);

@@ -43,6 +43,7 @@ namespace Albedo
 		int tutStep = 1;
 		string bridgeIP;
 		string bridgeUser;
+		bool newUsername = false;
 		
 		public SetupWindow()
 		{
@@ -58,6 +59,15 @@ namespace Albedo
 		async private void StartIndex()
 		{
 			await Task.Delay(100); //Makes sure TabControl animation triggers
+
+			string username = Platform.ReadSetting("bridgeUserName");
+			if (username.Contains("albedo")) {
+				bridgeIP = Platform.ReadSetting("bridgeIP");
+				newUsername = true;
+				SetupTabs.SelectedIndex = 3;
+				return;
+			}
+
 			SetupTabs.SelectedIndex = 1;
 			return;
 		}
@@ -99,15 +109,19 @@ namespace Albedo
 		{
 			if (SetupTabs.SelectedIndex == 3) {
 				Search(false);
-				ComboItem bridge = (ComboItem)BridgeCombo.SelectedItem;
-				if (BridgeCombo.SelectedIndex != -1) {
-					bridgeIP = bridge.idStore;
-				} else {
-					bridgeIP = ManualIP.Text;
+				if (!newUsername) {
+					ComboItem bridge = (ComboItem)BridgeCombo.SelectedItem;
+					if (BridgeCombo.SelectedIndex != -1) {
+						bridgeIP = bridge.idStore;
+					} else {
+						bridgeIP = ManualIP.Text;
+					}
 				}
+
 				Pair(true);
 			} else if (SetupTabs.SelectedIndex < 3) {
 				Pair(false);
+				newUsername = false;
 				Search(true);
 			} else {
 				Pair(false);
@@ -190,10 +204,12 @@ namespace Albedo
 		{
 			this.Dispatcher.Invoke((Action)(async () =>
 			{
-				await Setup.PairAttempt(bridgeIP, bridgeUser);
+				await Setup.PairAttempt(bridgeIP, bridgeUser); //bridgeUser isn't actually used anymore
 				if (JsonParser.Read(Storage.tempData, new string[] { "success" }) != null) {
+					string generatedName = JsonParser.Read(Storage.tempData, new string[] { "success", "username" });
+
 					Properties.Settings.Default.bridgeIP = bridgeIP;
-					Properties.Settings.Default.bridgeUserName = bridgeUser;
+					Properties.Settings.Default.bridgeUserName = generatedName;
 					Properties.Settings.Default.Save();
 					this.SetupTabs.SelectedIndex++;
 					Storage.InitializeData();
