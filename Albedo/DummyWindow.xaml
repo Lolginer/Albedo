@@ -19,6 +19,7 @@
 					<MenuItem Header="Lights on" Click="LightsOnItem_Click"/>
 					<MenuItem Header="Lights off" Click="LightsOffItem_Click"/>
 					<Separator />
+					<MenuItem Header="About / Donate" Click="AboutItem_Click"/>
 					<MenuItem Header="Exit Albedo" Click="ExitItem_Click"/>
 				</ContextMenu>
 			</tb:TaskbarIcon.ContextMenu>

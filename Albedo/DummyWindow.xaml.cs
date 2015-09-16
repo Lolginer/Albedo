@@ -57,7 +57,7 @@ namespace Albedo
 		private bool Ready()
 		{
 			string username = Platform.ReadSetting("bridgeUserName");
-			if (Platform.ReadSetting("bridgeIP") != "0.0.0.0" && !username.Contains("albedo")) {
+			if (Platform.ReadSetting("bridgeIP") != "0.0.0.0" && username.Contains("albedo")) {
 				return false;
 			} else {
 				return true;
@@ -121,6 +121,12 @@ namespace Albedo
 		private void TaskIcon_TrayBalloonTipClicked(object sender, RoutedEventArgs e)
 		{
 			ShowClass.ShowMain();
+		}
+
+		private void AboutItem_Click(object sender, RoutedEventArgs e)
+		{
+			AboutWindow about = new AboutWindow();
+			about.Show();
 		}
 		
 	}

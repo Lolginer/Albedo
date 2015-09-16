@@ -8,6 +8,8 @@
 			<Run Name="VersionText" Text="Version"/>
 			<Run Text=" | "/>
 			<Hyperlink NavigateUri="http://loginer.net/albedo" RequestNavigate="Hyperlink_RequestNavigate">Website</Hyperlink>
+			<Run Text=" | "/>
+			<Hyperlink NavigateUri="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=KEGK64W9SJAPG" RequestNavigate="Hyperlink_RequestNavigate">Donate (PayPal)</Hyperlink>
 			<Run Text="&#xA;&#xA;This application is provided without any support or warranty."/>
 			<Run Text="For bug reports or feature requests, send an e-mail to"/>
 			<Hyperlink NavigateUri="mailto:loginer@loginer.net" RequestNavigate="Hyperlink_RequestNavigate">loginer@loginer.net</Hyperlink>

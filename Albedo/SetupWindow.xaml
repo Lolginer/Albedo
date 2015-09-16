@@ -102,8 +102,11 @@
 					<TextBlock HorizontalAlignment="Left" Margin="10,10,0,0" TextWrapping="Wrap" Text="step 5" VerticalAlignment="Top" Height="77" Width="544" FontSize="48" FontFamily="Segoe UI Light"/>
 					<Button Content="Close" HorizontalAlignment="Left" Margin="460,297,0,0" VerticalAlignment="Top" Width="200" Height="50" FontSize="22" FontFamily="Segoe UI Semilight" Click="Close_Click" />
 					<TextBlock HorizontalAlignment="Left" Margin="10,87,0,0" TextWrapping="Wrap"
-						VerticalAlignment="Top" Height="205" Width="650" FontSize="16" FontFamily="Segoe UI Semilight" Text=
-							   "By default, Windows hides new notification icons. You can pin Albedo to the taskbar by following the instructions below. This step is optional, but highly recommended.&#xA;If you're on Windows 10, drag the icon to the taskbar to pin it.&#xA;Close this window to complete the tutorial."/>
+						VerticalAlignment="Top" Height="205" Width="650" FontSize="16" FontFamily="Segoe UI Semilight">
+						<Run Text="By default, Windows hides new notification icons. You can pin Albedo to the taskbar by following the instructions below. If you're on Windows 10, drag the icon to the taskbar.&#xA;&#xA;Close this window to finish. If you find Albedo useful, consider"></Run>
+						<Hyperlink NavigateUri="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;hosted_button_id=KEGK64W9SJAPG" RequestNavigate="Hyperlink_RequestNavigate">donating a few cents.</Hyperlink>
+						<Run Text=":)"></Run>
+					</TextBlock>
 					<Image HorizontalAlignment="Left" Height="103" VerticalAlignment="Top" Width="550" Source="Resources/albedo_pin_instructions.png" Margin="65,189,0,0"/>
 				</Grid>
 			</TabItem>
