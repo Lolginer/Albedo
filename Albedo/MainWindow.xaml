@@ -5,7 +5,7 @@
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:Custom="http://metro.mahapps.com/winfx/xaml/shared" x:Class="Albedo.MainWindow"
 		xmlns:local="clr-namespace:Albedo"
-        Title="Albedo" Height="325" Width="500" ResizeMode="NoResize" Background="#FFFFFFFF" Foreground="White" BorderThickness="0,0,0,0" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" EnableDWMDropShadow="True" ShowTitleBar="False"
+        Title="Albedo" Height="325" Width="500" ResizeMode="NoResize" Background="#FFFF" Foreground="White" BorderThickness="0,0,0,0" WindowStartupLocation="CenterScreen" ShowInTaskbar="False" EnableDWMDropShadow="True" ShowTitleBar="False"
 		ShowIconOnTitleBar="False" GlowBrush="#FF000000" WindowTransitionsEnabled="True" TitleCaps="False" WindowTitleBrush="#FF888888" NonActiveWindowTitleBrush="#FF888888" Icon="Resources/albedo_icon.ico" HorizontalAlignment="Right" VerticalAlignment="Bottom" Loaded="MetroWindow_Loaded" Deactivated="MetroWindow_Deactivated" AllowsTransparency="True" WindowStyle="None" Closing="MetroWindow_Closing">
 
 

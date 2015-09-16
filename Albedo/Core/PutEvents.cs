@@ -117,6 +117,13 @@ namespace Albedo.Core
 		public static void ChangeBrightness(string light, int brightness)
 		{
 			ChangeValue(light, brightness, "bri");
+			if (brightness <= 2) {
+				ToggleLight(light, false);
+			} else {
+				if (JsonParser.Read(Storage.latestData, new string[] { "lights", light, "state", "on" }) == false) {
+					ToggleLight(light, true);
+				}
+			}
 		}
 
 		public static void ChangeHue(string light, int hue)
@@ -143,7 +150,7 @@ namespace Albedo.Core
 		public static int ChangeScene(string scene, bool hardCoded)
 		{
 			//Turn on the lights if any of them are disabled
-			foreach (string light in Storage.groupData.lights) {
+			foreach (string light in Storage.groupData.lights) {			
 				if (JsonParser.Read(Storage.latestData, new string[] { "lights", light, "state", "on" }) == false) {
 					ToggleLight(light, true);
 				}
@@ -170,6 +177,10 @@ namespace Albedo.Core
 					foreach (string light in Storage.groupData.lights) {
 						Uri dataUri = new Uri(AddressBuild.LightState(light));
 						PutData(dataUri, JsonParser.Serialize(JsonParser.Read(Storage.sceneData, new string[] { scene, "state", i.ToString() })));
+						if (JsonParser.Read(Storage.sceneData, new string[] { scene, "state", i.ToString(), "bri" }) <= 2) {
+							ToggleLight(light, false);
+						}
+
 						if (i < limit) { i++; }
 					}
 
