@@ -206,16 +206,56 @@ namespace Albedo.Core
         //Reads data deserialized by this class.
 		public static dynamic Read(dynamic data, string[] path)
 		{
+			bool exception = false;
+			bool notNullable = false;
+			if (path[path.Length - 1] == "hue" ||
+				path[path.Length - 1] == "sat") {
+				notNullable = true;
+			}
+
 			foreach (string subPath in path) {
 				var dataRef = (IDictionary<string, object>)data;
 				try {
 					data = dataRef[subPath];
 				} catch {
+					exception = true;
+					break;
+				}
+			}
+
+			if (data == null && notNullable) {
+				exception = true;
+			}
+
+			if (exception) {
+				if (notNullable) {
+					double zero = 0;
+					return zero;
+				} else {
 					return null;
 				}
 			}
 
 			return data;
+		}
+
+		//Checks if the key exists and isn't null.
+		public static dynamic Exists(dynamic data, string[] path)
+		{
+			foreach (string subPath in path) {
+				var dataRef = (IDictionary<string, object>)data;
+				try {
+					data = dataRef[subPath];
+				} catch {
+					return false;
+				}
+			}
+
+			if (data == null) {
+				return false;
+			}
+
+			return true;
 		}
 
         //Adds new data. Cannot be used to overwrite existing values.

@@ -71,6 +71,7 @@ namespace Albedo.Core
 					if (doSceneBackup) {
 						sceneBackup = latestData.lights;
 					}
+
 					Platform.FinalizeRefresh();
 				}
 			}

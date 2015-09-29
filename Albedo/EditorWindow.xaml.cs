@@ -68,6 +68,7 @@ namespace Albedo
 					sliderRef.Value = JsonParser.Read(Storage.latestData, new string[] { "lights", lightLabel, "state", "bri" });
 					sliderRef2.Value = JsonParser.Read(Storage.latestData, new string[] { "lights", lightLabel, "state", "hue" });
 					sliderRef3.Value = JsonParser.Read(Storage.latestData, new string[] { "lights", lightLabel, "state", "sat" });
+
 					if (JsonParser.Read(Storage.latestData, new string[] { "lights", lightLabel, "state", "on" }) == true && !Effects.effectsOn) {
 						sliderRef.IsEnabled = true;
 						sliderRef.Opacity = 0.85;
@@ -76,6 +77,19 @@ namespace Albedo
 						sliderRef3.IsEnabled = true;
 						sliderRef3.Opacity = 0.85;
 					}
+
+					if (!JsonParser.Exists(Storage.latestData, new string[] { "lights", lightLabel, "state", "hue" })) {
+						sliderRef2.IsEnabled = false;
+						sliderRef2.Opacity = 0.35;
+						sliderRef2.Visibility = Visibility.Hidden;
+					}
+
+					if (!JsonParser.Exists(Storage.latestData, new string[] { "lights", lightLabel, "state", "sat" })) {
+						sliderRef3.IsEnabled = false;
+						sliderRef3.Opacity = 0.35;
+						sliderRef3.Visibility = Visibility.Hidden;
+					}
+
 					i++;
 				}
 			}
