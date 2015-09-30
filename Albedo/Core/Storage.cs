@@ -64,6 +64,7 @@ namespace Albedo.Core
 					latestData = backupData;
 					groupData = groupBackupData;
 					finalize = true;
+					
 					return;
 				}
 			} finally {
@@ -101,7 +102,10 @@ namespace Albedo.Core
 			
 			var result = RefreshData();
 
+			var bridgeResult = FindNewBridgeIP();
+
 			Effects.AutoEffect();
+			var bridgeResult2 = StoreBridgeID();
 
 			return 0;
 		}
@@ -111,6 +115,64 @@ namespace Albedo.Core
 			AddressBuild.InitializeVar(Platform.ReadSetting("bridgeIP"), Platform.ReadSetting("bridgeUserName"), Platform.ReadSetting("bridgeGroup"));
 			var result = RefreshData();
 			return 0;
+		}
+
+		//Attempt to store bridge ID
+		async public static Task StoreBridgeID()
+		{
+			if (Platform.ReadSetting("bridgeIdentity") == "") {
+				try {
+					HttpClient client = new HttpClient();
+					Task<HttpResponseMessage> getBridgeData = client.GetAsync("https://www.meethue.com/api/nupnp");
+					HttpResponseMessage bridgeData = await getBridgeData;
+					string bridgeString = await bridgeData.Content.ReadAsStringAsync();
+					dynamic bridgeJson = JsonParser.Deserialize(bridgeString);
+					foreach (dynamic bridgeInfo in bridgeJson) {
+						string bridgeIdentity = bridgeInfo.id;
+						string bridgeAddress = bridgeInfo.internalipaddress;
+						bridgeIdentity = bridgeIdentity.ToLowerInvariant();
+						if (bridgeAddress == Platform.ReadSetting("bridgeIP")) {
+							Platform.WriteSetting("bridgeIdentity", bridgeIdentity);
+							Platform.SaveSettings();
+						}
+						return;
+					}
+				} catch { }
+			}
+		}
+
+		//Find the bridge again if the local IP changes
+		async public static Task FindNewBridgeIP()
+		{
+			bool syncFailed = false;
+			try {
+				HttpClient client = new HttpClient();
+				Task<HttpResponseMessage> getTestData = client.GetAsync(AddressBuild.LightsRoot());
+				HttpResponseMessage testData = await getTestData;
+				string testString = await testData.Content.ReadAsStringAsync();
+				dynamic testJson = JsonParser.Deserialize(testString);
+			} catch { syncFailed = true; }
+
+			if (!syncFailed) { return; }
+
+			try {
+				HttpClient client = new HttpClient();
+				Task<HttpResponseMessage> getBridgeData = client.GetAsync("https://www.meethue.com/api/nupnp");
+				HttpResponseMessage bridgeData = await getBridgeData;
+				string bridgeString = await bridgeData.Content.ReadAsStringAsync();
+				dynamic bridgeJson = JsonParser.Deserialize(bridgeString);
+				foreach (dynamic bridgeInfo in bridgeJson) {
+					string bridgeIdentity = bridgeInfo.id;
+					string bridgeAddress = bridgeInfo.internalipaddress;
+					bridgeIdentity = bridgeIdentity.ToLowerInvariant();
+					if (bridgeIdentity == Platform.ReadSetting("bridgeIdentity")) {
+						if (bridgeAddress != Platform.ReadSetting("bridgeIP")) {
+							Platform.WriteSetting("bridgeIP", bridgeAddress);
+							Platform.SaveSettings();
+						}
+					}
+				}
+			} catch { }
 		}
 
 		public static void IntializeDefaultScenes()

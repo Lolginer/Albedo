@@ -551,6 +551,7 @@ namespace Albedo
 
 			if (writeMessage == MessageBoxResult.Yes) {
 				Properties.Settings.Default.bridgeIP = "0.0.0.0";
+				Properties.Settings.Default.bridgeIdentity = "";
 				Properties.Settings.Default.Save();
 				WindowStorage.dummyStorage.Exit();
 			}

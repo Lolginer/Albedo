@@ -82,6 +82,25 @@ namespace Albedo.Core
 			dynamic dynamicData = new ExpandoObject();
 			var dataRef = (IDictionary<string, object>)dynamicData;
 			subString = Regex.Replace(subString, "^(\\s)+", ""); //Remove leading whitespace
+
+			//Check if it's an array
+			if (subString.StartsWith("[")) {
+				subString = Regex.Replace(subString, "(\\s)+$", ""); //Remove trailing whitespace
+				subString = ReplaceComma(subString);
+				subString = subString.Substring(1, subString.Length - 2); //Remove brackets
+
+				List<dynamic> dynamicList = new List<dynamic>();
+
+				string[] subStringArray = subString.Split('α');
+
+				foreach (string subSubString in subStringArray) {
+					dynamicList.Add(Deserialize(subSubString));
+				}
+
+				dynamic[] dynamicArray = dynamicList.ToArray();
+				return dynamicArray;
+			}
+
 			subString = subString.Remove(0, 1); //Remove first curly brace
 			subString = Regex.Replace(subString, "(\\s)+$", ""); //Remove trailing whitespace
 			if (subString.Substring(subString.Length - 1, 1) == "}") {
@@ -190,6 +209,36 @@ namespace Albedo.Core
 			}
 
 			return elementObject;
+		}
+
+		public static int IndexOfComma(string line)
+		{
+			StringBuilder lineBuild = new StringBuilder(line);
+			int parDepth = 0;
+
+			for (int i = 0; i < lineBuild.Length; i++) {
+				if (lineBuild[i] == '}') { parDepth--; }
+				if (parDepth > 0) { lineBuild[i] = 'Ä'; }
+				if (lineBuild[i] == '{') { parDepth++; }
+			}
+
+			string lineClean = lineBuild.ToString();
+
+			return lineClean.IndexOf(',');
+		}
+
+		public static string ReplaceComma(string line)
+		{
+			string lineClean = line;
+
+			while (IndexOfComma(lineClean) >= 0) {
+				int index = IndexOfComma(lineClean);
+				StringBuilder build = new StringBuilder(lineClean);
+				build[index] = 'α';
+				lineClean = build.ToString();
+			}
+
+			return lineClean;
 		}
 
 		public static void JsonTest()
