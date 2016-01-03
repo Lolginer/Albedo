@@ -299,5 +299,17 @@ namespace Albedo.Properties {
                 this["bridgeIdentity"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ambientSatMode {
+            get {
+                return ((int)(this["ambientSatMode"]));
+            }
+            set {
+                this["ambientSatMode"] = value;
+            }
+        }
     }
 }

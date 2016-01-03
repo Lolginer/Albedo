@@ -137,15 +137,22 @@
 								<ComboBoxItem>Medium (4 seconds, default)</ComboBoxItem>
 								<ComboBoxItem>Fast (1 second)</ComboBoxItem>
 							</ComboBox>
+							<TextBlock HorizontalAlignment="Left" Margin="10,174,0,0" TextWrapping="Wrap" Text="Special color mode" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401" />
+							<ComboBox Name="ColorCombo" HorizontalAlignment="Left" Margin="10,195,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="ColorCombo_SelectionChanged" >
+								<ComboBoxItem>Default</ComboBoxItem>
+								<ComboBoxItem>Strong saturation</ComboBoxItem>
+								<ComboBoxItem>Constant brightness</ComboBoxItem>
+								<ComboBoxItem>Strong saturation + Constant brightness</ComboBoxItem>
+							</ComboBox>
 
-							<TextBlock HorizontalAlignment="Left" Margin="10,188,0,0" TextWrapping="Wrap" Text="Daylight mode" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
+							<TextBlock HorizontalAlignment="Left" Margin="10,238,0,0" TextWrapping="Wrap" Text="Daylight mode" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
 
-							<TextBlock HorizontalAlignment="Left" Margin="10,220,0,0" TextWrapping="Wrap" Text="Sunrise setting" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401" />
-							<ComboBox Name="AppCombo2" HorizontalAlignment="Left" Margin="10,241,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="AppCombo2_SelectionChanged" />
+							<TextBlock HorizontalAlignment="Left" Margin="10,270,0,0" TextWrapping="Wrap" Text="Sunrise setting" Foreground="#F666" VerticalAlignment="Top" FontSize="16" FontFamily="Segoe UI Semibold" Width="401" />
+							<ComboBox Name="AppCombo2" HorizontalAlignment="Left" Margin="10,291,0,0" VerticalAlignment="Top" Width="736" SelectionChanged="AppCombo2_SelectionChanged" />
 
-							<TextBlock HorizontalAlignment="Left" Margin="10,288,0,0" TextWrapping="Wrap" Text="Reset options" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
-							<Button Content="Reset bridge settings" HorizontalAlignment="Left" Margin="10,325,0,0" VerticalAlignment="Top" Width="150" Height="32" Click="ResetButton_Click" />
-							<Label Content="Use this if you've made changes to your network and Albedo is no longer working." HorizontalAlignment="Left" Margin="5,357,0,0" VerticalAlignment="Top" Width="458"/>
+							<TextBlock HorizontalAlignment="Left" Margin="10,338,0,0" TextWrapping="Wrap" Text="Reset options" VerticalAlignment="Top" FontSize="24" FontFamily="Segoe UI Light" Width="401" />
+							<Button Content="Reset bridge settings" HorizontalAlignment="Left" Margin="10,375,0,0" VerticalAlignment="Top" Width="150" Height="32" Click="ResetButton_Click" />
+							<Label Content="Use this if you've made changes to your network and Albedo is no longer working." HorizontalAlignment="Left" Margin="5,407,0,0" VerticalAlignment="Top" Width="458"/>
 						</Grid>
 					</ScrollViewer>
 				</Grid>

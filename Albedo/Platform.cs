@@ -135,15 +135,18 @@ namespace Albedo
 				}
 				saturationAverage = screenPixels.Average(x => x.GetSaturation()) * saturationAverage * 255;
 
-				//Desaturation
-				saturationAverage *= 0.5F;
+				if (Properties.Settings.Default.ambientSatMode == 0) {
+					//Desaturation
+					saturationAverage *= 0.5F;
 
-				//Saturation in darkness
-				float contrastBoost = (127 - (brightnessAverage * 10));
-				if (contrastBoost < 0) {
-					contrastBoost = 0;
+					//Saturation in darkness
+					float contrastBoost = (127 - (brightnessAverage * 10));
+					if (contrastBoost < 0) {
+						contrastBoost = 0;
+					}
+					saturationAverage += contrastBoost;
 				}
-				saturationAverage += contrastBoost;
+
 				if (saturationAverage > 255) {
 					saturationAverage = 255;
 				}

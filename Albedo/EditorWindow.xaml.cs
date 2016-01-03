@@ -233,6 +233,18 @@ namespace Albedo
 				AppCombo1.SelectedIndex = 2;
 			}
 
+			ColorCombo.SelectedIndex = 0;
+			if (Albedo.Properties.Settings.Default.ambientSatMode > 0) {
+				ColorCombo.SelectedIndex = 1;
+			}
+			if (Albedo.Properties.Settings.Default.ambientColorOnly > 0) {
+				if (ColorCombo.SelectedIndex == 1) {
+					ColorCombo.SelectedIndex = 3;
+				} else {
+					ColorCombo.SelectedIndex = 2;
+				}
+			}
+
 			slidersAllowed = true;
 		}
 
@@ -745,6 +757,25 @@ namespace Albedo
 			public override string ToString()
 			{
 				return nameStore;
+			}
+		}
+
+		private void ColorCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			if (slidersAllowed && AppCombo1.SelectedIndex != -1) {
+				if (ColorCombo.SelectedIndex == 0) {
+					Albedo.Properties.Settings.Default.ambientColorOnly = 0;
+					Albedo.Properties.Settings.Default.ambientSatMode = 0;
+				} else if (ColorCombo.SelectedIndex == 1) {
+					Albedo.Properties.Settings.Default.ambientColorOnly = 0;
+					Albedo.Properties.Settings.Default.ambientSatMode = 1;
+				} else if (ColorCombo.SelectedIndex == 2) {
+					Albedo.Properties.Settings.Default.ambientColorOnly = 250;
+					Albedo.Properties.Settings.Default.ambientSatMode = 0;
+				} else if (ColorCombo.SelectedIndex == 3) {
+					Albedo.Properties.Settings.Default.ambientColorOnly = 250;
+					Albedo.Properties.Settings.Default.ambientSatMode = 1;
+				}
 			}
 		}
 	}
